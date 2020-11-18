@@ -1,0 +1,16 @@
+﻿EXEC sp_MSforeachtable 'ALTER TABLE ? NOCHECK CONSTRAINT all'
+EXEC sp_MSforeachtable 'DELETE ?'
+EXEC sp_MSforeachtable 'ALTER TABLE ? WITH CHECK CHECK CONSTRAINT all'
+EXEC sp_MSforeachtable '
+IF NOT EXISTS (
+    SELECT
+        *
+    FROM
+        SYS.IDENTITY_COLUMNS
+        JOIN SYS.TABLES ON SYS.IDENTITY_COLUMNS.Object_ID = SYS.TABLES.Object_ID
+    WHERE
+        SYS.TABLES.Object_ID = OBJECT_ID(''?'') AND SYS.IDENTITY_COLUMNS.Last_Value IS NULL
+)
+AND OBJECTPROPERTY( OBJECT_ID(''?''), ''TableHasIdentity'' ) = 1
+
+    DBCC CHECKIDENT (''?'', RESEED, 0) WITH NO_INFOMSGS'

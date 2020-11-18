@@ -1,0 +1,1 @@
+﻿:r ..\Migrations\Framework\PreDeploymentMigrations.gsql

@@ -1,0 +1,5 @@
+﻿INSERT INTO [dbo].[User]([Name])VALUES('Adria')
+INSERT INTO [dbo].[User]([Name])VALUES('Réka')
+INSERT INTO [dbo].[User]([Name])VALUES('Áron')
+INSERT INTO [dbo].[User]([Name])VALUES('Marci')
+INSERT INTO [dbo].[User]([Name])VALUES('Mocsi')
