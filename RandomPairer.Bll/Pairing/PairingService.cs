@@ -111,6 +111,9 @@ namespace RandomPairer.Bll.Pairing
 
             var pair = names.Where(n => n.InversePair.Count == 0 && n.Name.ToLower() != name.ToLower()).ToList().GetRandomElement();
 
+            if (pair == null)
+                throw new RandomPairerValidationException("No more available users.\nContact mocsi for assistance");
+
             var secret = Guid.NewGuid().ToString();
 
             user.PairId = pair.Id;
